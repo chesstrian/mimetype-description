@@ -1,3 +1,4 @@
+import importlib.resources as pkg_resources
 import xml.etree.ElementTree
 
 from cached_property import cached_property
@@ -18,7 +19,8 @@ class MimeTypeDescription:
         result = dict()
         lang_attr = '{http://www.w3.org/XML/1998/namespace}lang'
         shared_mime_info = '{http://www.freedesktop.org/standards/shared-mime-info}'
-        root = xml.etree.ElementTree.parse('./freedesktop.org.xml').getroot()
+        data = pkg_resources.read_text(__package__, 'freedesktop.org.xml')
+        root = xml.etree.ElementTree.fromstring(data)
 
         for mime_type in root:
             _type = mime_type.attrib['type']
