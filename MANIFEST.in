@@ -1,0 +1,2 @@
+recursive-include mimetype_description *
+global-exclude *.pyc

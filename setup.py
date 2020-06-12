@@ -10,10 +10,11 @@ setup(
     url="https://github.com/chesstrian/mimetype-description",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    version="0.0.2",
+    version="0.0.4",
     author="Christian Gutierrez",
     author_email="chesstrian@gmail.com",
     packages=find_packages(),
+    include_package_data=True,
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Programming Language :: Python :: 3",
