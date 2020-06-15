@@ -10,7 +10,7 @@ setup(
     url="https://github.com/chesstrian/mimetype-description",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    version="0.0.4",
+    version="0.0.5",
     author="Christian Gutierrez",
     author_email="chesstrian@gmail.com",
     packages=find_packages(),
@@ -21,6 +21,5 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.7",
-    install_requires=["cached-property==1.5.1"]
+    python_requires=">=3.7"
 )

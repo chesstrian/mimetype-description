@@ -11,11 +11,9 @@ pip install mimetype-description
 ## Usage
 
 ```python
-from mimetypes import guess_type
+from mimetype_description import guess_mime_type, get_mime_type_description
 
-from mimetype_description import get_mime_type_description
-
-mime_type = guess_type('file.txt')[0]
+mime_type = guess_mime_type('file.txt')
 description = get_mime_type_description(mime_type)
 print(description)  # plain text document
 ```

@@ -1,22 +1,12 @@
 import importlib.resources as pkg_resources
 import xml.etree.ElementTree
 
-from cached_property import cached_property
-
-
-class UnsupportedMimeType(Exception):
-    pass
-
-
-class UnsupportedLanguage(Exception):
-    pass
-
 
 class MimeTypeDescription:
+    _mime_types = dict()
+    _descriptions = dict()
 
-    @cached_property
-    def _descriptions(self) -> dict:
-        result = dict()
+    def __init__(self):
         lang_attr = '{http://www.w3.org/XML/1998/namespace}lang'
         shared_mime_info = '{http://www.freedesktop.org/standards/shared-mime-info}'
         data = pkg_resources.read_text(__package__, 'freedesktop.org.xml')
@@ -24,24 +14,28 @@ class MimeTypeDescription:
 
         for mime_type in root:
             _type = mime_type.attrib['type']
-            result[_type] = dict()
+            self._descriptions[_type] = dict()
 
             for child in mime_type:
                 _tag = child.tag.replace(shared_mime_info, '')
                 if _tag == 'comment':
                     lang = child.attrib[lang_attr] if child.attrib else 'en'
-                    result[_type][lang] = child.text
+                    self._descriptions[_type][lang] = child.text
+                elif _tag == 'glob':
+                    ext = child.attrib['pattern'].replace('*.', '')
+                    self._mime_types[ext] = _type
 
-        return result
-
-    def get_description(self, mime_type: str, language: str) -> str:
+    def get_description(self, mime_type: str, language: str) -> (str, None):
         try:
             return self._descriptions[mime_type][language]
-        except KeyError as e:
-            if f"'{mime_type}'" in e.__str__():
-                raise UnsupportedMimeType(f"Unsupported MIME type: '{mime_type}'")
-            elif f"'{language}'" in e.__str__():
-                raise UnsupportedLanguage(f"Unsupported language: '{language}'")
+        except KeyError:
+            return None
+
+    def get_mime_type(self, filename: str) -> (str, None):
+        try:
+            return self._mime_types.get(filename.split('.')[-1])
+        except IndexError:
+            return None
 
 
 _instance = MimeTypeDescription()
@@ -51,4 +45,8 @@ def get_mime_type_description(mime_type: str, language: str = 'en') -> str:
     return _instance.get_description(mime_type, language)
 
 
-__all__ = ('get_mime_type_description', 'UnsupportedMimeType', 'UnsupportedLanguage')
+def guess_mime_type(filename: str) -> str:
+    return _instance.get_mime_type(filename)
+
+
+__all__ = ('get_mime_type_description', 'guess_mime_type')
