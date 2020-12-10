@@ -1,3 +1,4 @@
+import sys
 from setuptools import setup, find_packages
 
 with open("README.md", "r") as f:
@@ -10,7 +11,7 @@ setup(
     url="https://github.com/chesstrian/mimetype-description",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    version="0.0.5",
+    version="0.0.6",
     author="Christian Gutierrez",
     author_email="chesstrian@gmail.com",
     packages=find_packages(),
@@ -21,5 +22,8 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.7"
+    python_requires=">=3.5",
+    install_requires=[
+    'importlib_resources; python_version < "3.7.0"',
+    ]
 )
