@@ -1,8 +1,10 @@
 .idea
 .venv
 
+*.pyc
 __pycache__
 
+.tox
 dist
 build
 mimetype_description.egg-info/

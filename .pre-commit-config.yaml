@@ -1,13 +1,13 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.1.0
+    rev: v4.4.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-added-large-files
         args: ['--maxkb=2300']
       - id: check-xml
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.8.3
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.0.272
     hooks:
-      - id: flake8
+      - id: ruff

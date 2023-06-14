@@ -23,6 +23,6 @@ setup(
     ],
     python_requires=">=3.5",
     install_requires=[
-    'importlib_resources; python_version < "3.7.0"',
+        'importlib_resources; python_version < "3.7.0"',
     ]
 )
