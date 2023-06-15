@@ -1,3 +1,5 @@
+from typing import Union
+
 try:
     import importlib.resources as pkg_resources
 except ImportError:
@@ -29,13 +31,13 @@ class MimeTypeDescription:
                     ext = child.attrib['pattern'].replace('*.', '')
                     self._mime_types[ext] = _type
 
-    def get_description(self, mime_type: str, language: str) -> (str, None):
+    def get_description(self, mime_type: str, language: str) -> Union[str, None]:
         try:
             return self._descriptions[mime_type][language]
         except KeyError:
             return None
 
-    def get_mime_type(self, filename: str) -> (str, None):
+    def get_mime_type(self, filename: str) -> Union[str, None]:
         try:
             return self._mime_types.get(filename.split('.')[-1])
         except IndexError:
@@ -45,11 +47,11 @@ class MimeTypeDescription:
 _instance = MimeTypeDescription()
 
 
-def get_mime_type_description(mime_type: str, language: str = 'en') -> str:
+def get_mime_type_description(mime_type: str, language: str = 'en') -> Union[str, None]:
     return _instance.get_description(mime_type, language)
 
 
-def guess_mime_type(filename: str) -> str:
+def guess_mime_type(filename: str) -> Union[str, None]:
     return _instance.get_mime_type(filename)
 
 
