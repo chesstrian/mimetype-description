@@ -18,7 +18,7 @@ class MimeTypeDescription:
         try:
             data = pkg_resources.files(__package__).joinpath('freedesktop.org.xml').read_text(encoding='utf-8')
         except AttributeError:
-            # pkg_resources.files et al doesn't exist because we're running python < 3.9.
+            # Try calling pkg_resources.read_text for compatibility with python < 3.9.
             data = pkg_resources.read_text(__package__, 'freedesktop.org.xml')
         root = xml.etree.ElementTree.fromstring(data)
 
