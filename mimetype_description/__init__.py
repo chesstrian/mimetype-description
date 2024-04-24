@@ -15,7 +15,7 @@ class MimeTypeDescription:
     def __init__(self):
         lang_attr = '{http://www.w3.org/XML/1998/namespace}lang'
         shared_mime_info = '{http://www.freedesktop.org/standards/shared-mime-info}'
-        data = pkg_resources.read_text(__package__, 'freedesktop.org.xml')
+        data = pkg_resources.files(__package__).joinpath('freedesktop.org.xml').read_text(encoding='utf-8')
         root = xml.etree.ElementTree.fromstring(data)
 
         for mime_type in root:
