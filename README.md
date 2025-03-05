@@ -1,6 +1,6 @@
 # MIME Type Description
 
-Human readable MIME type descriptions based on [shared-mime-info](https://www.freedesktop.org/wiki/Software/shared-mime-info/).
+Human-readable MIME type descriptions based on [shared-mime-info](https://www.freedesktop.org/wiki/Software/shared-mime-info/).
 
 ## Install
 

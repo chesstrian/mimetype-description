@@ -42,18 +42,10 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 # Unlike Flake8, default to a complexity level of 10.
 max-complexity = 10
 
-[tool.tox]
-legacy_tox_ini = """
-[tox]
-envlist = py37, py38, py39, py310, mypy, py311
-
-[gh-actions]
-python =
-    3.7: py37
-    3.8: py38
-    3.9: py39
-    3.10: py310, mypy
-    3.11: py311
-
-[testenv]
-"""
+[tool.tox.gh.python]
+"3.12" = ["3.12"]
+"3.11" = ["3.11"]
+"3.10" = ["3.10"]
+"3.9" = ["3.9"]
+"3.8" = ["3.8"]
+"3.7" = ["3.7"]
