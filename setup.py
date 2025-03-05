@@ -10,7 +10,7 @@ setup(
     url="https://github.com/chesstrian/mimetype-description",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    version="0.1.0",
+    version="0.1.1",
     author="Christian Gutierrez",
     author_email="chesstrian@gmail.com",
     packages=find_packages(),
@@ -22,7 +22,4 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.5",
-    install_requires=[
-        'importlib_resources; python_version < "3.7.0"',
-    ]
 )
