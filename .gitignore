@@ -9,3 +9,5 @@ dist
 build
 mimetype_description.egg-info/
 .pytest_cache
+
+.DS_Store
